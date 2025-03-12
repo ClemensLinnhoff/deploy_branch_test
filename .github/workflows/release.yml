@@ -28,6 +28,7 @@ jobs:
       working-directory: repo
       run: |
         git checkout deploy
+        echo "hello" > hello.txt
         date +"%Y-%m-%d %H:%M:%S" > timestamp.txt
         git config --global user.name "Commit from Workflow"
         git config --global user.email "test@test.com"
