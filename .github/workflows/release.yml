@@ -24,6 +24,8 @@ jobs:
          submodules: recursive
 
     - name: build files and push changes to remote
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       working-directory: repo
       run: |
         git checkout deploy
