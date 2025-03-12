@@ -22,13 +22,7 @@ jobs:
          path: repo
          fetch-depth: 0 # test if depth in fetch history is required
          submodules: recursive
-
-    - name: Set up SSH key for deploy key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.XOM_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
+         ssh-key: {{ secrets.XOM_DEPLOY_KEY }}
 
     - name: build files and push changes to remote
       working-directory: repo
