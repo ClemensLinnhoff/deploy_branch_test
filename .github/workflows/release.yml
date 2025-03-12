@@ -24,6 +24,7 @@ jobs:
          submodules: recursive
 
     - name: build files and push changes to remote
+      working-directory: repo
       run: |
         git checkout deploy
         date +"%Y-%m-%d %H:%M:%S" > timestamp.txt
