@@ -22,7 +22,7 @@ jobs:
          path: repo
          fetch-depth: 0 # test if depth in fetch history is required
          submodules: recursive
-         ssh-key: ${{ secrets.XOM_DEPLOY_KEY }}
+         ssh-key: ${{ secrets.DEPLOY_KEY }}
 
     - name: build files and push changes to remote
       working-directory: repo
