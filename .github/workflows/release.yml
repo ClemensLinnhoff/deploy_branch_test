@@ -1,0 +1,35 @@
+# Workflow to push the generated files from JSON to AsciiDoc to the repository.
+# Only execute on the deployment-branch, where the different versions of the documentation are tagged.
+name: Upload AsciiDoc-files generated from JSON-files
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  
+jobs:
+  build:
+    name: Upload AsciiDoc-files generated from JSON-files
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout with submodules
+      uses: actions/checkout@v4
+      with:
+         path: repo
+         fetch-depth: 0 # test if depth in fetch history is required
+         submodules: recursive
+
+    - name: build files and push changes to remote
+      working-directory: repo/scripts
+      run: |
+        git checkout deploy
+        date +"%Y-%m-%d %H:%M:%S" > timestamp.txt
+        git config --global user.name "Commit from Workflow"
+        git config --global user.email "test@test.com"
+        git add ../content/*schema.adoc -f
+        git commit -m "Automatically commit generated AsciiDoc files"
+        git push
