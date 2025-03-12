@@ -30,6 +30,6 @@ jobs:
         date +"%Y-%m-%d %H:%M:%S" > timestamp.txt
         git config --global user.name "Commit from Workflow"
         git config --global user.email "test@test.com"
-        git add ../content/*schema.adoc -f
+        git add .
         git commit -m "Automatically commit generated AsciiDoc files"
         git push
